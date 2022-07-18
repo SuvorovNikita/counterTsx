@@ -1,21 +1,30 @@
 import { useState } from 'react';
-import './App.css';
+
 import Counter from './Counter';
 
+import './App.css';
+
 const App = () => {
-  const [count, setCount] = useState(0);
+  const minValue = 0;
+  const maxValue = 5;
+  const [count, setCount] = useState(minValue);
 
   const incrimentCount = () => {
-    setCount(count + 1);
+    if (count < maxValue) {
+      setCount(count + 1);
+    }
   };
-
-  const dicrimentCount = () => {
-    setCount(0);
-  };
+  const dicrimentCount = () => setCount(0);
 
   return (
     <div className="App">
-      <Counter count={count} incrimentCount={incrimentCount} dicrimentCount={dicrimentCount} />
+      <Counter
+        count={count}
+        incrimentCount={incrimentCount}
+        dicrimentCount={dicrimentCount}
+        maxValue={maxValue}
+        minValue={minValue}
+      />
     </div>
   );
 };
